@@ -29,12 +29,3 @@
     - name: setup application
       include_tasks: app.yml 
   ignore_errors: True
-
-# - name: setup application
-#   hosts: all
-#   remote_user: "{{ user_name }}"
-#   become: true
-#   tags:
-#     - app
-#   include_tasks: app.yml  
-#   ignore_errors: True

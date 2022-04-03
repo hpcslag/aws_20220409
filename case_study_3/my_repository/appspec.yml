@@ -8,6 +8,6 @@ files:
 hooks:
   BeforeInstall:
     - location: clean.sh
-  # watch out the path
+
   AfterInstall:
     - location: deploy.sh
