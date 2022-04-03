@@ -1,0 +1,11 @@
+- name: Prepare Golang Service
+  hosts: all
+  remote_user: "{{ user_name }}"
+  become: true
+  tags: 
+    - install
+
+  roles: 
+    - role: gantsign.golang
+      golang_gopath: '$HOME/workspace-go'
+      golang_version: '1.18'
