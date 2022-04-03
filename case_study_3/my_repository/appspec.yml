@@ -1,0 +1,13 @@
+version: 0.0
+os: linux
+
+files:
+  - source: /
+    destination: /tmp/go-deploy
+
+hooks:
+  BeforeInstall:
+    - location: clean.sh
+  # watch out the path
+  AfterInstall:
+    - location: deploy.sh

@@ -1,0 +1,40 @@
+- name: Prepare Golang Service
+  hosts: all
+  remote_user: "{{ user_name }}"
+  become: true
+  tags: 
+    - install
+
+  roles: 
+    - role: gantsign.golang
+      golang_gopath: '$HOME/workspace-go'
+      golang_version: '1.18'
+
+- name: Install CodeDeploy agent
+  hosts: all
+  remote_user: "{{ user_name }}"
+  become: true
+  tags: 
+    - install
+
+  roles:
+    - diodonfrost.amazon_codedeploy
+
+- name: setup application
+  hosts: all
+  become: true
+  tags:
+    - app
+  tasks:
+    - name: setup application
+      include_tasks: app.yml 
+  ignore_errors: True
+
+# - name: setup application
+#   hosts: all
+#   remote_user: "{{ user_name }}"
+#   become: true
+#   tags:
+#     - app
+#   include_tasks: app.yml  
+#   ignore_errors: True

@@ -1,0 +1,20 @@
+[Unit]
+Description=Service unit for my_api
+After=local-fs.target network.target
+
+[Service]
+Type=simple
+User={{ app_user }}
+Group={{ app_user }}
+WorkingDirectory=/usr/local/lib/my_api
+ExecStart=/usr/local/lib/my_api/my_api
+
+Environment=DATABASE_NAME="xxxxxx"
+
+LimitNOFILE=65535
+UMask=0027
+SyslogIdentifier=my_api
+Restart=always
+
+[Install]
+WantedBy=multi-user.target

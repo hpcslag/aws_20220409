@@ -1,0 +1,23 @@
+version: 0.2
+
+phases:
+  install:
+    commands:
+      - go mod download
+
+  build:
+    commands:
+      - go build -o my_api
+
+artifacts:
+  files:
+    - my_api
+    - appspec.yml
+    - clean.sh
+    - deploy.sh
+  name: "my-api-$(date +%Y-%m-%d)"
+  discard-paths: yes
+
+cache:
+  paths:
+    - /go/pkg/**/*
