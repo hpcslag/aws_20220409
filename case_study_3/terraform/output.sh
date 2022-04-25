@@ -1,5 +1,7 @@
 set -e
 
+terraform refresh -var-file=staging.tfvars
+
 terraform output -json my_servers | jq -r '.[] | "Host \(.namespace)
     Hostname \(.public_ip)
     User ubuntu
@@ -7,7 +9,6 @@ terraform output -json my_servers | jq -r '.[] | "Host \(.namespace)
 
 echo "[my_servers]" >> hosts
 terraform output -json my_servers | jq -r '.[] | "\(.namespace)"' >> hosts
-
 
 mv ./ssh.config ../ansible/ssh.config
 

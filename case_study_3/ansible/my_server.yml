@@ -25,6 +25,7 @@
   become: true
   tags:
     - app
+    - install
   tasks:
     - name: setup application
       include_tasks: app.yml 
